@@ -16,19 +16,6 @@ public class Login {
         this.PASSWORD = password;
     }
 
-    public User SignIn() {
-        try {
-            int userID = new LoginDAO().validation(this);
-
-            if (userID > 0) {
-                return new UserDAO().getUser(userID);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public String getLOGIN() {
         return LOGIN;
     }
