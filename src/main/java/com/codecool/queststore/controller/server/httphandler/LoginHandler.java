@@ -2,6 +2,7 @@ package com.codecool.queststore.controller.server.httphandler;
 
 import com.codecool.queststore.controller.server.service.LoginService;
 import com.codecool.queststore.model.server.session.Session;
+import com.codecool.queststore.model.user.User;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -24,7 +25,7 @@ public class LoginHandler extends AbstractHttphandler implements HttpHandler {
         }
     }
 
-    private void handleSession(HttpExchange httpExchange) throws IOException  {
+    public void handleSession(HttpExchange httpExchange) throws IOException  {
         String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
         HttpCookie cookie = new HttpCookie("Session-id", cookieStr);
 
@@ -42,6 +43,8 @@ public class LoginHandler extends AbstractHttphandler implements HttpHandler {
         Map inputs = parseFormData(httpExchange);
         // check DB for user and password
         LoginService service = new LoginService((String) inputs.get("login"), (String) inputs.get("password"));
+        User user = service.SignIn();
+        service.sessionCreationIfUserValid(user);
         Session session = service.getSession();
 
         if (session != null) {

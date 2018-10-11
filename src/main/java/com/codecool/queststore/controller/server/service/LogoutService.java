@@ -13,4 +13,5 @@ public class LogoutService {
         this.session = SessionPool.getSessionByUUID(UUID.fromString(cookie.getValue()));
         SessionPool.terminate(session);
     }
+
 }

@@ -35,7 +35,7 @@ public class Session implements Serializable {
         return Objects.hash(uuid);
     }
 
-    UUID getUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
