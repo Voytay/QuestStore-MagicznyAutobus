@@ -13,12 +13,10 @@ public class LogoutServiceTest {
 
     @Test
     void checksIfsessionExistswhenLogout() {
-        //SessionPool sessionPool = new SessionPool();
         Session session = SessionPool.getNewSession(12);
-        HttpCookie cookie = new HttpCookie("ID-Session", session.getUuid().toString());
-
+        HttpCookie cookie = session.getCookie();
         LogoutService logoutService = new LogoutService(cookie);
-
         Assertions.assertFalse(SessionPool.sessions.contains(session));
+
     }
 }

@@ -46,7 +46,7 @@ public class LoginHandlerTest {
         doNothing().when(loginHandler).redirect(mockHttpExchange, "/profile/");
         loginHandler.handleSession(mockHttpExchange);
         verify(loginHandler).redirect(mockHttpExchange,"/profile/");
-
+        SessionPool.terminate(session);
     }
 
 

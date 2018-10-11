@@ -12,7 +12,7 @@ import org.junit.rules.ExpectedException;
 import java.io.IOException;
 import java.net.SocketException;
 
-import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.*;
 
 
 public class AppTest {
@@ -20,7 +20,7 @@ public class AppTest {
     @Test
     public void ifUserHasWalletTRUE() {
         User userTest = new User("janek", "wiśniewski", "@.pl", "asd", 1, Role.MENTOR);
-        assertEquals(null, userTest.getWallet());
+        assertNull(userTest.getWallet());
     }
 
     @Rule
@@ -39,10 +39,9 @@ public class AppTest {
 
     @Test
     public void ifSessionRemovedTRUE() {
-        SessionPool sp = new SessionPool();
-        Session s = sp.getNewSession(1);
-        sp.terminate(s);
-        assertEquals(false, sp.sessions.contains(s));
+        Session s = SessionPool.getNewSession(1);
+        SessionPool.terminate(s);
+        assertFalse(SessionPool.sessions.contains(s));
 
     }
 }

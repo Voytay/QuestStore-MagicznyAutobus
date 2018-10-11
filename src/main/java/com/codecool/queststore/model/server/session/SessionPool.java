@@ -44,10 +44,10 @@ public class SessionPool {
     {
         expireCheckAndClean();
         for (Session session: sessions) {
-            if (session.getUuid().equals(uuid))
+            if (session.getUuid().equals(uuid)) {
                 session.RenewExpirationDate();
                 return session;
-
+            }
 
         }
         return null;

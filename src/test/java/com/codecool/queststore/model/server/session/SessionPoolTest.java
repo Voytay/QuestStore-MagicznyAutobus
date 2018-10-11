@@ -12,32 +12,32 @@ class SessionPoolTest {
 
     @Test
     void TestIfSessionRegisterToSessionPool() {
-        SessionPool sp = new SessionPool();
-        Session session = sp.getNewSession(1);
-        Assertions.assertEquals(true,sp.sessions.contains(session));
+        //SessionPool sp = new SessionPool();
+        Session session = SessionPool.getNewSession(1);
+        Assertions.assertTrue(SessionPool.sessions.contains(session));
     }
 
     @Test
     void TestIfSessionsForSameIdDifferent() {
-        SessionPool sp = new SessionPool();
-        Session session1 = sp.getNewSession(1);
-        Session session2 = sp.getNewSession(1);
-        Assertions.assertEquals(false, session1.equals(session2));
+        //SessionPool sp = new SessionPool();
+        Session session1 = SessionPool.getNewSession(1);
+        Session session2 = SessionPool.getNewSession(1);
+        Assertions.assertFalse(session1.equals(session2));
     }
 
     @Test
     void TestGettingSessionByCookie(){
-        SessionPool sp = new SessionPool();
-        Session session = sp.getNewSession(1);
+        //SessionPool sp = new SessionPool();
+        Session session = SessionPool.getNewSession(1);
         HttpCookie cookie = new HttpCookie("ID-Session", session.getUuid().toString());
-        Assertions.assertEquals(true, sp.isSessionByCookie(cookie));
+        Assertions.assertTrue(SessionPool.isSessionByCookie(cookie));
     }
 
     @Test
     void TestGettingNonExistingSessionByCookie(){
-        SessionPool sp = new SessionPool();
+        //SessionPool sp = new SessionPool();
         Session session = new Session(1);
         HttpCookie cookie = new HttpCookie("ID-Session", session.getUuid().toString());
-        Assertions.assertEquals(false, sp.isSessionByCookie(cookie));
+        Assertions.assertFalse(SessionPool.isSessionByCookie(cookie));
     }
 }
