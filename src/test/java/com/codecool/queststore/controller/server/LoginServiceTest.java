@@ -18,7 +18,7 @@ class LoginServiceTest {
     String surname = "Brajlich";
     String email = "sb@gmail.com";
     String address = "NeverLand";
-    int id = 12;
+    int id = 15;
     Role role = Role.ADMIN;
 
     @Test
@@ -27,7 +27,7 @@ class LoginServiceTest {
         doReturn(null).when(loginService).SignIn();
         User user = loginService.SignIn();
         loginService.sessionCreationIfUserValid(user);
-        assertEquals(null, loginService.getSession());
+        assertNull(loginService.getSession());
     }
 
     @Test
@@ -38,6 +38,7 @@ class LoginServiceTest {
         User newUser = loginService.SignIn();
         loginService.sessionCreationIfUserValid(newUser);
         assertTrue(SessionPool.sessions.contains(loginService.getSession()));
+        SessionPool.terminate(loginService.getSession());
     }
 
 
