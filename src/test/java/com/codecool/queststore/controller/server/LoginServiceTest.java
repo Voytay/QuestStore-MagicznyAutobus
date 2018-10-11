@@ -22,7 +22,7 @@ class LoginServiceTest {
     Role role = Role.ADMIN;
 
     @Test
-    void testLoginServiceConstructor(){
+    void testIfsessionIsNullWhenUserIsNotInDatabase(){
         LoginService loginService = spy(new LoginService(name, password));
         doReturn(null).when(loginService).SignIn();
         User user = loginService.SignIn();
@@ -31,7 +31,7 @@ class LoginServiceTest {
     }
 
     @Test
-    void ifUserHasSession(){
+    void testIfSessionGetsCreatedWhenUserIsInDataBase(){
         User user = new User(name, surname, email, address, id, role);
         LoginService loginService = spy(new LoginService(name, password));
         doReturn(user).when(loginService).SignIn();
