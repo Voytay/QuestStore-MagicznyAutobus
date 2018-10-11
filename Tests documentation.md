@@ -34,4 +34,26 @@ checking if able to start server on restricted port
 checking if terminating session also deleting it from SessionPool 
 		problems: need to change access modifier from private to public
 
+# LoginHandlarTest.testIfHandlePostMethodGetsCalled():
+
+This test mocks HttpExchange object and checks if handlePost method gets calld.
+
+# LoginHandlarTest.testIfRedirectMethodGetsCalld():
+
+This test mocks HttpExchange object and checks if redirect method gets calld. This test checks if user will be redirected to his/her profile page when his/her session is valid meaning if session exist in SessionPool and has the same UUID as user cookie value.
+
+# LoginServiceTest.testIfsessionIsNullWhenUserIsNotInDatabase():
+
+This test checks if new session will not be created when user does not exist in database while login.
+
+# LoginServiceTest.testIfSessionGetsCreatedWhenUserIsInDataBase():
+
+This test checks if new session will be created and added to SessionPool when user exist in database while login.
+Encountered problems: To test this funcionality modificatin in Login and LoginService class was needed.
+
+# LogoutServiceTest.checksIfsessionExistswhenLogout():
+
+This test checks the logout funcionality. When user logout from application his/her session should be removed from SessionPool.
+Encountered problems: Due to missing brackets in getSessionByUUID method in SessionPool wrong session were being removed.
+
 
